@@ -12,7 +12,7 @@
   <arg name="debug" default="false"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find meine_bot)/worlds/kitchen_dining.world"/>
+    <arg name="world_name" value="$(find meine_bot)/worlds/$(arg world_file)"/>
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     <arg name="gui" value="$(arg gui)"/>
@@ -24,7 +24,5 @@
 
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -param robot_description -model meine_bot"/>
 
-  <!--launch rviz-->
-  <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d /home/catkin_ws/src/meine_bot/RvizConfig.rviz" />
 
 </launch>

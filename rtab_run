@@ -1,0 +1,54 @@
+#! /bin/bash
+
+echo ' '
+read -p 'Would you like to clear the previous map database? (y/n): ' ansinput
+
+if [ “$ansinput” = “y” ]
+then
+ printf '\n Map deleted \n'
+ rm -f ~/.ros/rtabmap.db
+
+elif [ “$ansinput” = “n” ]
+then
+ printf '\n Map kept \n'
+
+else
+ echo 'Warning: Not an acceptable option. Choose (y/n).
+         '
+fi
+
+echo ' '
+
+read -p 'Enter target world destination or d for default: 
+WORLDS AVAIABLE:
+1. empty.world
+2. kitchen_dining.world (default)
+' input_choice
+
+case $input_choice in
+  1)
+  world="empty.world";;
+  2)
+  world="kitchen_dining.world";;
+  *)
+  world="kitchen_dining.world";;
+esac
+
+xterm -e "roslaunch meine_bot world.launch world_file:=$world" &
+
+sleep 3 &&
+
+xterm -e "rosrun meine_bot teleop"&
+
+sleep 3 &&
+
+echo ''
+read -n 1 -s -r -p "Press any key to continue"
+
+xterm -e "roslaunch meine_bot mapping.launch simulation:=true" &
+sleep 3 &&
+xterm -e "roslaunch meine_bot rviz.launch" &
+
+echo ' '
+echo 'Script Completed'
+echo ' '
