@@ -34,20 +34,20 @@ case $input_choice in
   world="kitchen_dining.world";;
 esac
 
-xterm -e "roslaunch meine_bot world.launch world_file:=$world" &
+uxterm -e "roslaunch meine_bot world.launch world_file:=$world" &
 
 sleep 3 &&
 
-xterm -e "rosrun meine_bot teleop"&
+uxterm -e "rosrun meine_bot teleop"&
 
 sleep 3 &&
 
 echo ''
 read -n 1 -s -r -p "Press any key to continue"
 
-xterm -e "roslaunch meine_bot mapping.launch simulation:=true" &
+uxterm -e "roslaunch meine_bot mapping.launch simulation:=true" &
 sleep 3 &&
-xterm -e "roslaunch meine_bot rviz.launch" &
+uxterm -e "roslaunch meine_bot rviz.launch" &
 
 echo ' '
 echo 'Script Completed'
