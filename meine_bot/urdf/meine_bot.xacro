@@ -120,7 +120,7 @@
 
   <link name="camera_rgbd_frame"></link>
 
-  <joint name="camera_rgbd_frame" type="fixed">
+  <joint name="camera_rgbd_joint" type="fixed">
     <origin rpy="0 0 0"/>
     <parent link="camera_link"/>
     <child link="camera_rgbd_frame"/>
