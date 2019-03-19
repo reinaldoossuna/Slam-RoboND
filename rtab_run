@@ -1,4 +1,4 @@
-#! /bin/bash
+# /bin/bash
 
 echo ' '
 read -p 'Would you like to clear the previous map database? (y/n): ' ansinput
@@ -23,6 +23,7 @@ read -p 'Enter target world destination or d for default:
 WORLDS AVAIABLE:
 1. empty.world
 2. kitchen_dining.world (default)
+3. room.world
 ' input_choice
 
 case $input_choice in
@@ -30,24 +31,26 @@ case $input_choice in
   world="empty.world";;
   2)
   world="kitchen_dining.world";;
+  3)
+  world="room.world";;
   *)
   world="kitchen_dining.world";;
 esac
 
-uxterm -e "roslaunch meine_bot world.launch world_file:=$world" &
+x-terminal-emulator -x roslaunch meine_bot world.launch world_file:=$world 2>/dev/null &
 
 sleep 3 &&
 
-uxterm -e "rosrun meine_bot teleop"&
+x-terminal-emulator -x rosrun meine_bot teleop 2>/dev/null &
 
 sleep 3 &&
 
 echo ''
 read -n 1 -s -r -p "Press any key to continue"
 
-uxterm -e "roslaunch meine_bot mapping.launch simulation:=true" &
+x-terminal-emulator -x roslaunch meine_bot mapping.launch simulation:=true 2>/dev/null&
 sleep 3 &&
-uxterm -e "roslaunch meine_bot rviz.launch" &
+x-terminal-emulator -x roslaunch meine_bot rviz.launch 2>/dev/null&
 
 echo ' '
 echo 'Script Completed'
