@@ -1,0 +1,8 @@
+  for al cells m_i do
+    if m_i in perceptual field of z_t
+      l_{t,i} = l_{t-1,i} + inverse_sensor_model\(m_i, x_t, z_t\) - l_0
+    else
+      l_{t,i} = l_{t-1,i}
+    endif
+  endfor
+  return {l_{t,i}}

@@ -1,0 +1,86 @@
+\begin{thebibliography}{10}
+
+\bibitem{Thrun2006a}
+S.~Thrun and M.~Montemerlo, ``{The graph SLAM algorithm with applications to
+  large-scale mapping of urban structures},'' {\em International Journal of
+  Robotics Research}, vol.~25, no.~5-6, pp.~403--429, 2006.
+
+\bibitem{VehicularTechnologySociety2017}
+{Vehicular Technology Society} and {Institute of Electrical and Electronics
+  Engineers}, ``{2017 14th Workshop on Positioning, Navigation and
+  Communications (WPNC) : 25-26 Oct. 2017.},'' 2017.
+
+\bibitem{Thrun2006}
+S.~Thrun and M.~Montemerlo, ``{The graph SLAM algorithm with applications to
+  large-scale mapping of urban structures},'' {\em International Journal of
+  Robotics Research}, vol.~25, no.~5-6, pp.~403--429, 2006.
+
+\bibitem{Zhang2014}
+T.~Zhang, Z.~J. Chong, B.~Qin, J.~G. Fu, S.~Pendleton, and M.~H. Ang, ``{Sensor
+  fusion for localization, mapping and navigation in an indoor environment},''
+  {\em 2014 International Conference on Humanoid, Nanotechnology, Information
+  Technology, Communication and Control, Environment and Management, HNICEM
+  2014 - 7th HNICEM 2014 Joint with 6th International Symposium on
+  Computational Intelligence and Intelligent In}, no.~November, pp.~1--6, 2014.
+
+\bibitem{Sunderhauf2012}
+N.~S{\"{u}}nderhauf and P.~Protzel, ``{Towards a robust back-end for pose graph
+  SLAM},'' {\em Proceedings - IEEE International Conference on Robotics and
+  Automation}, pp.~1254--1261, 2012.
+
+\bibitem{Grisetti2010}
+G.~Grisetti, R.~Kummerle, C.~Stachniss, and W.~Burgard, ``{A tutorial on
+  graph-based SLAM},'' {\em IEEE Intelligent Transportation Systems Magazine},
+  vol.~2, no.~4, pp.~31--43, 2010.
+
+\bibitem{Thrun1999}
+S.~Thrun, W.~Burgard, and D.~Fox, ``{Rob550: Probabilistic Robotics},''
+  pp.~1999--2000, 1999.
+
+\bibitem{Kurt-Yavuz2012}
+Z.~Kurt-Yavuz and S.~Yavuz, ``{A comparison of EKF, UKF, FastSLAM2.0, and
+  UKF-based FastSLAM algorithms},'' {\em INES 2012 - IEEE 16th International
+  Conference on Intelligent Engineering Systems, Proceedings}, pp.~37--43,
+  2012.
+
+\bibitem{Celan2016}
+V.~Celan, I.~Stancic, and J.~Music, ``{Cleaning up smart cities-Localization of
+  semi-autonomous floor scrubber},'' {\em 2016 International Multidisciplinary
+  Conference on Computer and Energy Science, SpliTech 2016}, 2016.
+
+\bibitem{Calonder2006}
+M.~Calonder, ``{EKF SLAM vs. FastSLAM {\{}A Comparison{\}}},'' {\em
+  Cvlab-Report-2010-001}, pp.~1--5, 2006.
+
+\bibitem{Bailey2006}
+T.~Bailey and H.~F. Durrant-Whyte, ``{Simultaneous localization and mapping
+  (SLAM): Part I},'' {\em IEEE Robotics and Automation Magazine}, vol.~13,
+  no.~3, pp.~108--117, 2006.
+
+\bibitem{Burgard2010}
+W.~Burgard, C.~Stachniss, K.~Arras, and M.~Bennewitz, ``{Introduction to Mobile
+  Robotics SLAM : Simultaneous Localization and Mapping What is SLAM ?},''
+  no.~June, 2010.
+
+\bibitem{Fernandez-Madrigal2013}
+J.-A. Fernández-Madrigal and J.~L. {Blanco Claraco}, ``{Simultaneous
+  localization and mapping for mobile robots : introduction and methods},''
+  p.~483, 2013.
+
+\bibitem{Cadena2016}
+J.~J. {Cadena, C and Carlone, L and Carrillo, H and Latif, Y and Scaramuzza, D
+  and Neira, J and Reid, I and Leonard, J J and Leonard{\}}, C.~Cadena,
+  L.~Carlone, H.~Carrillo, Y.~Latif, D.~Scaramuzza, J.~Neira, I.~Reid, and
+  J.~J. Leonard, ``{Past, Present, and Future of Simultaneous Localization And
+  Mapping: Towards the Robust-Perception Age},'' {\em IEEE Transactions on
+  Robotics}, vol.~32, no.~6, pp.~1309--1332, 2016.
+
+\bibitem{Hong2012}
+S.~Hong, ``{A Comparison of SLAM Algorithms Based on a Graph of Re- lations},''
+  p.~2012, 2012.
+
+\bibitem{Berns2010}
+K.~Berns and E.~von Puttkamer, ``{Simultaneous localization and mapping
+  (SLAM)},'' {\em Autonomous Land Vehicles}, no.~September, pp.~146--172, 2010.
+
+\end{thebibliography}

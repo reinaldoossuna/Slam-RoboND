@@ -3,4 +3,5 @@ Student Project Materials/*
 *.png
 *.pdf
 *.bag
+!report.pdf
 

@@ -1,0 +1,210 @@
+%% V1.0
+%% by Gabriel Garcia, gabrcg@gmail.com
+%% This is a template for Udacity projects using IEEEtran.cls
+
+%% Be Udacious!
+
+
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+
+\usepackage[pdftex]{graphicx}    
+\usepackage{cite}
+\usepackage{listings}
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\begin{document}
+
+\title{Map My World Project}
+
+
+
+\author{Reinaldo Ossuna}
+
+\markboth{Map My World project, Robotics Nanodegree Program, Udacity}%
+{}
+\IEEEtitleabstractindextext{%
+
+% TODO
+\begin{abstract}
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Robot, Udacity, SLAM, EKFSLAM, GraphSLAM, RTAB-MAP
+\end{IEEEkeywords}}
+
+\maketitle
+\IEEEdisplaynontitleabstractindextext
+\IEEEpeerreviewmaketitle
+\section{Introduction}
+\label{sec:introduction}
+
+\IEEEPARstart{S}{LAM} is the process by which the system performace the simultaneous estimation of the state of the
+robot equiped with on-board sensors and the construction of the map. This can be called the egg-chicken problem because
+normaly the robot need the map to performace the localization problem and the pose is needed to performace the
+mapping.\\
+A solution to the SLAM problem has been seen as a `Holly grail' for the mobile robotic community as it would provide the
+means to make a robot truly autonomous.\ref{Bailey2006}
+
+
+\section{Background}
+
+Almong all methods proposed in the literature to solve the SLAM algoriths, we could point out some facts.
+
+\subsection{Occupancy grid}
+
+Occupancy grid maps address the problem of generating consistent maps from noisy and uncertain measurement data, under
+the assumption that the robot pose is known.\\
+The standard of the algorithm is to calculate the posterior over maps given $z_{1:t}$ the set of measurements up to time
+$t$ and the $x_{1:t}$ path of the robot.
+
+\begin{equation}
+  p(m|z_{1:t},x_{1:t})
+\end{equation}
+
+The occupancy mapping algorithm estimates for each grid cell individually the posterior probability of occupancy. It is
+an adaptation of the binary Bayes filter for static environments.\\
+The algorithm loops through all grid cells $i$, and updates those that
+fall into the sensor conde of the measuremets $zt$. For those where it does, it updates the occupancy value by the
+function inverse\_sensor\_model().
+
+
+Data from multiple sensors can be fused into a single map. By maintaing multiple maps, one for each sensor and
+extracting the most pessimistic occupancy value when making navigation decisions. This procedure is preferable when
+differents sensors are sensitive to differents types of obstacles.
+
+\subsection{online SLAM}
+
+Estimate the posterior over the momentary pose along with the map:
+\begin{equation}
+  p(x_t, m| z_{1:t},u_{1:t})
+\end{equation}
+
+We can notice that this algorith involves estimating the \textit{actual pose} and the map.
+\subsection{Full SLAM}
+Estimate the posterior over the \textit{entire path} $x_{1:t}$ along with the map.
+
+\begin{equation}
+  p(x_{1:t}, m| z_{1:t},u_{1:t})
+\end{equation}
+
+\subsection{EKF SLAM}
+
+The Extended Kalman Filter (EKF) can be viewed as a variant of a Bayesian Filter. It's provide a recursive estimate of
+the state of dynamic system.\\
+The EKF uses a prediction and an update step. The predictions step calculates the probability of the current state
+$x_t$, while the measurement $z_t$ for the current time step k is not yet available:
+
+\begin{equation}
+
+  p(x_t|z_{t-1}) = \int p(x_t| x_{t-1}) p(x_{t_1}|z_{t-1}) dx_{t1}
+
+\end{equation}
+
+\subsection{Fast SLAM}
+
+In FastSLAM, alike in EKF SLAM, poses are assumed to behave according to a probabilist law name motion model with an
+underlying density. FastSLAM decomposes the SLAM problem into one robot localization problem, and a collection of $K$
+landmark estimation problems.
+
+\subsection{FastSLAM 1.0 x FastSLAM 2.0}
+
+Both algorith use the a low dimensional Extended Kalman Filter to estimate the posterior over the map features.\\
+Basically, the only modification in the version 2 is that the proposal distribution should not only rely on the precious
+estimate of the pose $s_{t-1}$ but also on the actual measurements $z_t$.\ref{Calonder2006}
+
+\subsection{Grid-based FastSLAM}
+Grid-based FastSLAM can model the environment using grid maps with out predefining any landmark position. Therefore, we
+can now solve the SLAM problem in an arbitray environment.
+
+\subsection{GraphSLAM}
+
+A Graph-based SLAM approach construct a simplified estimation problem by abstracting the raw sensor measurements. These
+raw measurements are replaced by the edges in the graph which can be seen as `virtual measurements'.\\
+We can apply several algorithm to reduce the dimensionality of the optimization problem.\cite{Thrun2006a}
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{graph.png}
+      \caption{Illustration of the acquisition of the information matrix in GraphSLAM. The left diagram shows the
+      dependence graph \cite{Thrun2006a}}
+      \label{fig:graph}
+\end{figure}
+
+\subsection{RTAB-MAP}
+
+Real-Time Appearance-Based Mapping is a RGB-D, Stereo and Lidar Graph-Based SLAM approach based on an incremental appearance-based loop closure detector. The loop closure detector uses a bag-of-words approach to determinate how likely a new image comes from a previous location or a new location. When a loop closure hypothesis is accepted, a new constraint is added to the map’s graph, then a graph optimizer minimizes the errors in the map. A memory management approach is used to limit the number of locations used for loop closure detection and graph optimization, so that real-time constraints on large-scale environnements are always respected. RTAB-Map can be used alone with a handheld Kinect, a stereo camera or a 3D lidar for 6DoF mapping, or on a robot equipped with a laser rangefinder for 3DoF mapping.
+
+\section{Scene robot configuration}
+\subsection{Robot Configuration}
+
+
+The robot model was based in the robot from the previous project. The RGB camera was replaced with a RGB-D camera. The
+LaserScan could be removed since we can create a scan topic using the depth point cloud from the RGB-D camera. See
+Fig\ref{fig:rgbd}
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{model.png}
+      \caption{Robot with RGB-D Camera}
+      \label{fig:rgbd}
+\end{figure}
+
+\subsection{Scene Configuration}
+
+A new scene was builted using the Gazebo. We placed diferents objects in the scene to facilitate the loops closures. See
+Fig\ref{fig:room}.
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{newscene.png}
+      \caption{Room world}
+      \label{fig:room}
+\end{figure}
+
+\section{Results}
+
+After navigating around the worlds, the 3D and 2D occupacy grid map was generated for each environment. 
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{3dkitchen.png}
+      \caption{3D Map from the Kitchen}
+\end{figure}
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{mapkitchen.png}
+      \caption{Mapping from the Kitchen}
+\end{figure}
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{maproom.png}
+
+      \caption{Mapping from the Room}
+\end{figure}
+
+\section{Discussion}
+
+The mapping for the provided map as quite fast because there's many features in the map. In the first try in the created
+map the robot didn't find many features and the mapping was not working. We add more object through the scene, after
+that the mapping was quite fast.
+In the created scene, there's a Armbot, which it's keep swinging, the SLAM was not able to map this part.
+\section{Future work}
+
+    In the future, deploy the model in a real world and perfome similar task performed here.
+    Try different algorithms to the SLAM problem. Like Hector SLAM, ORB-SLAM, something similar to this article\cite{VehicularTechnologySociety2017}.
+
+
+\nocite{*}
+\bibliography{bib}
+\bibliographystyle{ieeetr}
+
+\end{document}
+
