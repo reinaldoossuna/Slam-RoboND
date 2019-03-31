@@ -29,8 +29,9 @@
 {}
 \IEEEtitleabstractindextext{%
 
-% TODO
 \begin{abstract}
+  In this project we implemented the RTAB-Map to create a 2D occupacy grid and a 3D map of two enviroments created with
+  Gazebo.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -49,7 +50,8 @@ robot equiped with on-board sensors and the construction of the map. This can be
 normaly the robot need the map to performace the localization problem and the pose is needed to performace the
 mapping.\\
 A solution to the SLAM problem has been seen as a `Holly grail' for the mobile robotic community as it would provide the
-means to make a robot truly autonomous.\ref{Bailey2006}
+means to make a robot truly autonomous.\ref{Bailey2006}\\
+This project uses RTAB-MAP packages from ROS, wich it's a type of GraphSLAM algorithm.
 
 
 \section{Background}
@@ -155,6 +157,14 @@ Fig\ref{fig:rgbd}
       \label{fig:rgbd}
 \end{figure}
 
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{frames.png}
+      \caption{Transform tree}
+      \label{fig:tree}
+\end{figure}
+
+
 \subsection{Scene Configuration}
 
 A new scene was builted using the Gazebo. We placed diferents objects in the scene to facilitate the loops closures. See
@@ -192,10 +202,13 @@ After navigating around the worlds, the 3D and 2D occupacy grid map was generate
 
 \section{Discussion}
 
-The mapping for the provided map as quite fast because there's many features in the map. In the first try in the created
-map the robot didn't find many features and the mapping was not working. We add more object through the scene, after
-that the mapping was quite fast.
+In the provided map there's many features, thereby a good 2d occupacy grid could be generated with two passes in the
+world.\\
+In the first try in the created map the robot didn't find many features and mapping was not working. We add more object
+throught the scene to achieve a sucessful mapping.\\
 In the created scene, there's a Armbot, which it's keep swinging, the SLAM was not able to map this part.
+
+ 
 \section{Future work}
 
     In the future, deploy the model in a real world and perfome similar task performed here.

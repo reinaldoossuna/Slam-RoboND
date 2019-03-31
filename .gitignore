@@ -4,4 +4,5 @@ Student Project Materials/*
 *.pdf
 *.bag
 !report.pdf
+rtabmap.db
 
